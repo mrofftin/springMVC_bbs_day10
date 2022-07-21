@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kr.mr.mapper.MemberMapper">
+  <select id="memberList" resultType="memberDTO">
+  	select * from member2
+  </select>
+  
+  <insert id="memberInsert" parameterType="memberDTO">
+  	insert into member2(id, pw, name, age, email, phone)
+  	values(#{id}, #{pw}, #{name}, #{age}, #{email}, #{phone})
+  </insert>
+  
+  <delete id="memberDel" parameterType="Integer">
+  	delete from member2 where no = #{no}
+  </delete>
+  
+  <select id="memberInfo" parameterType="Integer" resultType="memberDTO">
+  	select * from member2 where no = #{no}
+  </select>
+  
+  <update id="memberUpdate" parameterType="memberDTO">
+  	update member2 set age=#{age}, email=#{email}, phone=#{phone} where no=#{no}
+  </update>
+  
+  <select id="memberLogin" parameterType="memberDTO" resultType="String">
+  	select name from member2 where id = #{id} and pw=#{pw}
+  </select>
+  
+</mapper>
